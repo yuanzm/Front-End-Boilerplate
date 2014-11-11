@@ -32,27 +32,25 @@ module.exports = (grunt) ->
 		# Grunt task for node-browserify
 		browserify:
 			dev:
-				options:
-					preBundleCB: (b) ->
-						b.transform(coffeeify)
-						b.transform(stringify({extensions: ['.html']}))
-					expand: true
-					flatten: true
-					src: ["src/coffee/main.coffee"]
-					dest: 'bin/js'
-					ext: '.js'
+                options:
+                    preBundleCB: (b)->
+                        b.transform(coffeeify)
+                        b.transform(stringify({extensions: [".html"]}))
+                expand: true
+                flatten: true
+                src: ["src/coffee/main.coffee"]
+                dest: "bin/js"
+                ext: ".js"
 
 		# Minify files with UglifyJS
 		uglify:
-			bulid:
-				filse: [{
-					expend: true
-					cwd: "bin/js/"
-					src: ["**/*.js"]
-					dest: "dist/js"
-					ext: ".js"
+			build:
+				files: [{
+				    expand: true
+				    cwd: 'bin/js'
+				    src: '**/*.js'
+				    dest: 'dist/js'
 				}]
-
 		# Compress CSS files
 		cssmin:    
 		    build:
@@ -97,8 +95,7 @@ module.exports = (grunt) ->
 
 	grunt.registerTask "default", ->
 		grunt.task.run [
-			"connect"
-			"watch"
+			# "connect"
 			"clean:bin"
 			"browserify"
 			"sass"
@@ -111,8 +108,8 @@ module.exports = (grunt) ->
 			"clean:dist"
 			"browserify"
 			"sass"
-			"uglify"
-			"cssmin"
-			"copy"
 			"clean:sassCache"
+			"cssmin"
+			"uglify"
+			"copy"
 		]

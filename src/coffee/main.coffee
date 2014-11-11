@@ -1,1 +1,3 @@
-console.log "fuck"
+anotherModule = require "./another-module.coffee"
+
+anotherModule.changeH1Color()
